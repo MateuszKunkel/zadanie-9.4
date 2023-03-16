@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Szczegóły</title>
+    <link href="{{ url_for('static', filename='styles.css') }}" rel="stylesheet" type="text/css">
+</head>
+<body>
+    <h2> Zmień: </h2>
+    <form method="POST" action="/records/{{ record_id }}/">
+        {{ form.hidden_tag() }}
+        <table>
+            {% for field in form if field.widget.input_type != 'hidden' %}
+                <tr>
+                    <th>{{ field.label }} {% if field.flags.required %}*{% endif %}</th>
+                    <td>{{ field }}</td>
+                </tr>
+            {% endfor %}
+        </table>
+        <input type="submit" value="Zmień">
+    </form>
+
+    <h2> Aby zabrać wybrany materiał do czytelni kliknij <a href="/records/{{ record_id }}/read">Tutaj</a> </h2>
+
+
+</body>
+</html>

@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Czytelnia</title>
+    <link href="{{ url_for('static', filename='styles.css') }}" rel="stylesheet" type="text/css">
+</head>
+<body>
+
+    <h1> Czytasz: </h1>
+    <p></p>
+    <h2> {{ record["recordauto"] }} </h2>
+    <h2> {{ record["recordname"] }} </h2>
+    <p></p>
+    <h4>
+        "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum."
+    </h4>
+    <nav>
+        <h4><a href="/records">Wróć do listy</a></h4>
+    </nav>
+</body>
+</html>

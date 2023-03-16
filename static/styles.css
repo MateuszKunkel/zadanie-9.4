@@ -1,0 +1,26 @@
+body {
+  background: lightblue;
+  font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+}
+
+table, th, tr, td {
+  border: 1px solid black;
+}
+
+h1 {
+  text-align: center;
+  color: blue;
+}
+h2 {
+  text-align: center;
+  color: grey;
+}
+h3 {
+  text-align: center;
+  color: purple;
+}
+h4 {
+  text-align: center;
+  color: brown;
+}
+
