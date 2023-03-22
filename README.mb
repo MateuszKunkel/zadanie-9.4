@@ -1,6 +1,6 @@
 1 make sure you have all the requirements up and running.
 2 launch app.py.
-3 main hub is on http://127.0.0.1:5000/records.
+3 main hub is on http://127.0.0.1:5000/books.
 4 click on Autor to delve deeper into ~madness~ app.
 5 edit or click on Tutaj to read the script.
 6 use main hub creator to add new scripts.

@@ -14,7 +14,7 @@ app.config["SECRET_KEY"] = "bardzotajnyklucz"
 # ___________/records/___________________GET/POST
 
 
-@app.route("/records/", methods=["GET"])
+@app.route("/books/", methods=["GET"])
 def get_records():
     form = RecordsForm()
     error = ""
@@ -23,7 +23,7 @@ def get_records():
     )
 
 
-@app.route("/records/", methods=["POST"])
+@app.route("/books/", methods=["POST"])
 def post_records():
     form = RecordsForm()
 
@@ -42,15 +42,15 @@ def post_records():
 # ___________/records/<id>_______________GET/POST
 
 
-@app.route("/records/<int:record_id>/", methods=["GET"])
+@app.route("/books/<int:record_id>/", methods=["GET"])
 def get_records_id(record_id):
     record = records.get(record_id)
     form = RecordsForm(data=record)
     return render_template("record.html", form=form, record_id=record_id)
 
 
-@app.route("/records/<int:record_id>/", methods=["POST"])
-def put_records_id(record_id):
+@app.route("/books/<int:record_id>/", methods=["POST"])
+def post_records_id(record_id):
     form = RecordsForm()
     record = records.get(record_id)
 
@@ -69,7 +69,7 @@ def put_records_id(record_id):
 # ___________/records/<id>/read__________GET
 
 
-@app.route("/records/<int:record_id>/read/", methods=["GET"])
+@app.route("/books/<int:record_id>/read/", methods=["GET"])
 def get_records_id_watch(record_id):
     record = records.get(record_id)
     form = RecordsForm(data=record)

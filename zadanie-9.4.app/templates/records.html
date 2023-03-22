@@ -2,25 +2,23 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>lista nagrań</title>
+    <title>Lista woluminów</title>
     <link href="{{ url_for('static', filename='styles.css') }}" rel="stylesheet" type="text/css">
 </head>
-
 <body>
-
     <h1>Domowa Biblioteka z REST API (ale nie tu)</h1>
-
+    <h2>Kliknij w wybrany tytuł, aby przejść dalej</h2>
 <table>
     <thead>
-        <th><h2>Autor</h2></th>
-        <th><h2>Tytuł</h2></th>
-        <th><h2>Opis</h2></th>
-        <th><h2>Gwiazdki</h2></th>
+        <th><h2>Autor książki</h2></th>
+        <th><h2>Tytuł książki</h2></th>
+        <th><h2>Opis książki</h2></th>
+        <th><h2>Subiektywna Ocena</h2></th>
     </thead>
 {% for record in records %}
     <tr>
-        <td><a href="/records/{{ loop.index }}"><h3>{{ record.recordauto }}</h3></a></td>
-        <td><h3>{{ record.recordname }}</h3></td>
+        <td><h3>{{ record.recordauto }}</h3></td>
+        <td><a href="/books/{{ loop.index }}"><h3>{{ record.recordname }}</h3></a></td>
         <td><h3>{{ record.recordtext }}</h3></td>
         <td><h3>{{ record.recordstar }}</h3></td>
     </tr>
@@ -28,7 +26,7 @@
 </table>
 <div>
     <h1> Dodaj nowy wpis: </h1>
-    <form method="POST" action="/records/">
+    <form method="POST" action="/books/">
         {{ form.hidden_tag() }}
         <table>
             {% for field in form if field.widget.input_type != 'hidden' %}

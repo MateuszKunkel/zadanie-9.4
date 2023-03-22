@@ -1,9 +1,10 @@
 import json
 
+
 class Records:
     def __init__(self):
         try:
-            with open("records.json", "r") as f:
+            with open("books.json", "r") as f:
                 self.records = json.load(f)
         except FileNotFoundError:
             self.records = []
@@ -31,7 +32,7 @@ class Records:
         return False
 
     def save_all(self):
-        with open("records.json", "w") as f:
+        with open("books.json", "w") as f:
             json.dump(self.records, f)
 
 

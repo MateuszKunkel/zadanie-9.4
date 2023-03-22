@@ -8,5 +8,5 @@ class RecordsForm(FlaskForm):
     recordname = StringField("Tytuł", validators=[DataRequired()])
     recordtext = TextAreaField("Opis", validators=[DataRequired()])
     recordstar = IntegerField(
-        "Ile dajesz gwiazdek", validators=[NumberRange(min=1, max=5), DataRequired()]
+        "Oceń", validators=[NumberRange(min=1, max=5), DataRequired()]
     )
