@@ -1,7 +1,6 @@
 import json
 
-
-class Api_Records:
+class Records:
     def __init__(self):
         try:
             with open("records.json", "r") as f:
@@ -31,17 +30,9 @@ class Api_Records:
             return True
         return False
 
-    def delete(self, id):
-        record = self.get(id)
-        if record:
-            self.records.remove(record)
-            self.save_all()
-            return True
-        return False
-
     def save_all(self):
         with open("records.json", "w") as f:
             json.dump(self.records, f)
 
 
-api_records = Api_Records()
+records = Records()
