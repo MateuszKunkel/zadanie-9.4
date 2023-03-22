@@ -1,5 +1,6 @@
 import json
 
+
 class Api_Records:
     def __init__(self):
         try:
@@ -12,7 +13,7 @@ class Api_Records:
         return self.records
 
     def get(self, id):
-        record = [record for record in self.all() if record['id'] == id]
+        record = [record for record in self.all() if record["id"] == id]
         if record:
             return record[0]
         return []
@@ -41,5 +42,6 @@ class Api_Records:
     def save_all(self):
         with open("records.json", "w") as f:
             json.dump(self.records, f)
+
 
 api_records = Api_Records()
