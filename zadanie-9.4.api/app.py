@@ -11,7 +11,7 @@ def records_list_api_v1():
 
 
 @app.route("/api/v1/books/", methods=["POST"])
-def create_todo():
+def create_record():
     if not request.json:
         abort(400)
     if any(
@@ -23,13 +23,9 @@ def create_todo():
         ]
     ):
         abort(400)
-    record = {
-        "id": api_records.all()[-1]["id"] + 1,
-        "recordauto": request.json["recordauto"],
-        "recordname": request.json["recordname"],
-        "recordtext": request.json["recordtext"],
-        "recordstar": request.json["recordstar"],
-    }
+
+    record = {"id": api_records.all()[-1]["id"] + 1}
+    record.update(request.json)
     api_records.create(record)
     return jsonify({"book": record}), 201
 
@@ -59,13 +55,9 @@ def update_record(record_id):
         ]
     ):
         abort(400)
-    record = {
-        "recordauto": data.get("recordauto", record["recordauto"]),
-        "recordname": data.get("recordname", record["recrodname"]),
-        "recordtext": data.get("recordtext", record["recordtext"]),
-        "recordstar": data.get("recordstar", record["recordstar"]),
-        "id": record["id"],
-    }
+
+    record = {"id": record["id"]}
+    record.update(request.json)
     api_records.update(record_id, record)
     return jsonify({"book": record})
 
@@ -75,17 +67,7 @@ def delete_record(record_id):
     result = api_records.delete(record_id)
     if not result:
         abort(404)
-    # if successfully deleted, move back all next id`s to avoid empty spaces
-    # use hashtag on the code below to stop/activate this behaviour
-    # v
-    # if result:
-    #    lock = record_id
-    #    for record in api_records.all():
-    #        if record['id'] > lock:
-    #            record['id'] -= 1
-    #    api_records.save_all()
-    # ^
-    return jsonify({"book": result})
+    return jsonify({"Deletion result": result})
 
 
 @app.errorhandler(404)
