@@ -14,13 +14,8 @@ def get_records():
     form = RecordsForm()
     if request.method == "POST":
         if form.validate_on_submit():
-            record = {
-                "id": records.all()[-1]["id"] + 1,
-                "recordauto": form.data["recordauto"],
-                "recordname": form.data["recordname"],
-                "recordtext": form.data["recordtext"],
-                "recordstar": form.data["recordstar"],
-            }
+            id = {"id": records.all()[-1]["id"] + 1}
+            record = {**id,**form.data}
             records.create(record)
         return redirect(url_for("get_records"))
     error = ""
@@ -35,18 +30,13 @@ def get_records():
 @app.route("/books/<int:record_id>/", methods=["GET", "POST"])
 def get_records_id(record_id):
     record = records.get(record_id)
-    if request.method == "POST":
-        form = RecordsForm()
-        record = {
-            "id": record["id"],
-            "recordauto": form.data.get("recordauto", record["recordauto"]),
-            "recordname": form.data.get("recordname", record["recordname"]),
-            "recordtext": form.data.get("recordtext", record["recordtext"]),
-            "recordstar": form.data.get("recordstar", record["recordstar"]),
-        }
-        records.update(record_id, record)
-        return redirect(url_for("get_records"))
     form = RecordsForm(data=record)
+    if request.method == "POST":
+        if form.validate_on_submit():
+            id = {"id": record["id"]}
+            record = {**id,**form.data}
+            records.update(record_id, record)
+        return redirect(url_for("get_records"))
     return render_template("record.html", form=form, record_id=record_id)
 
 

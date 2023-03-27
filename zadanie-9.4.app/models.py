@@ -19,10 +19,12 @@ class Records:
         return []
 
     def create(self, data):
+        data.pop('csrf_token')
         self.records.append(data)
         self.save_all()
 
     def update(self, id, data):
+        data.pop('csrf_token')
         record = self.get(id)
         if record:
             index = self.records.index(record)

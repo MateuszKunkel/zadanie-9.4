@@ -25,9 +25,9 @@ def create_record():
         abort(400)
 
     record = {"id": api_records.all()[-1]["id"] + 1}
-    record.update(request.json)
-    api_records.create(record)
-    return jsonify({"book": record}), 201
+    request.json.update(record)
+    api_records.create(request.json)
+    return jsonify({"book": request.json}), 201
 
 
 @app.route("/api/v1/books/<int:record_id>", methods=["GET"])
@@ -57,9 +57,9 @@ def update_record(record_id):
         abort(400)
 
     record = {"id": record["id"]}
-    record.update(request.json)
-    api_records.update(record_id, record)
-    return jsonify({"book": record})
+    request.json.update(record)
+    api_records.update(record_id, request.json)
+    return jsonify({"book": request.json})
 
 
 @app.route("/api/v1/books/<int:record_id>", methods=["DELETE"])
@@ -67,7 +67,7 @@ def delete_record(record_id):
     result = api_records.delete(record_id)
     if not result:
         abort(404)
-    return jsonify({"Deletion result": result})
+    return jsonify({"Result": result})
 
 
 @app.errorhandler(404)
