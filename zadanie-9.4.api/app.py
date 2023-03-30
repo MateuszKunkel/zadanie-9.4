@@ -55,15 +55,10 @@ def update_record(record_id):
         ]
     ):
         abort(400)
-    record = {
-        'recordauto': data.get('recordauto', record['recordauto']),
-        'recordname': data.get('recordname', record['recordname']),
-        'recordtext': data.get('recordtext', record['recordtext']),
-        'recordstar': data.get('recordstar', record['recordstar']),
-        'id': record['id']
-    }
-    api_records.update(record_id, record)
-    return jsonify({'book': record})    
+        
+    updated = {**record,**request.json}
+    api_records.update(record_id, updated)
+    return jsonify({'book': updated})  
 
 
 @app.route("/api/v1/books/<int:record_id>", methods=["DELETE"])
