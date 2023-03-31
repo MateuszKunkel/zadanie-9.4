@@ -55,7 +55,9 @@ def update_record(record_id):
         ]
     ):
         abort(400)
-        
+    if "id" in data:
+        #inną opcją aby uniknąć errora jest pop.id jeśli wykryto
+        abort(400)
     updated = {**record,**request.json}
     api_records.update(record_id, updated)
     return jsonify({'book': updated})  
